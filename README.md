@@ -1,6 +1,9 @@
-# Welcome to Remix!
+# Welcome to Remix + Cord!
 
+- [Cord Docs](https://docs.cord.com)
 - [Remix Docs](https://remix.run/docs)
+
+This template follows [the cord integration guide](https://docs.cord.com/get-started/integration-guide).
 
 ## Development
 
