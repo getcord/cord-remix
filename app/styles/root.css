@@ -1,0 +1,40 @@
+/* Tune this on https://docs.cord.com/get-started/live-css-editor  */
+body {
+
+  /* Basic background for most elements */
+  --cord-color-base: #121314;
+
+  /* Background for highlighted elements, e.g. annotation */
+  --cord-color-base-strong: #696A6C;
+
+  /* Hover states and borders */
+  --cord-color-base-x-strong: #97979F;
+
+  /* Most content, e.g. message text */
+  --cord-color-content-primary: #F6F6F6;
+
+  /* Supplementary content, e.g. timestamps */
+  --cord-color-content-emphasis: #FFFFFF;
+
+  /* Links, button content and usernames */
+  --cord-color-brand-primary: #FFFFFF;
+
+}
+
+/* Prettify a bit */
+
+#setup-cord {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+}
+#setup-cord pre {
+  border: 1px dashed #97979F;
+  padding: 4px 6px;
+} 
+
+.change-user {
+  display: flex;
+  gap: 4px;
+  margin: 4px;
+}
