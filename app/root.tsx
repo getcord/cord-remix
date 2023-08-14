@@ -1,6 +1,7 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
-import type { LinksFunction, LoaderArgs } from "@remix-run/node";
+import { json, type LinksFunction, type LoaderArgs } from "@remix-run/node";
 import {
+  isRouteErrorResponse,
   Links,
   LiveReload,
   Meta,
@@ -8,10 +9,15 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useRouteError,
 } from "@remix-run/react";
 import stylesUrl from "~/styles/root.css";
-import { CordProvider } from "@cord-sdk/react";
-import { json } from "@remix-run/node";
+import { getUser } from "./utils/cord.server";
+import { PropsWithChildren } from "react";
+
+export async function loader({ request }: LoaderArgs) {
+  return json(getUser(request));
+}
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -23,83 +29,10 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export async function loader({ request }: LoaderArgs) {
-  // @ts-ignore I need this here, so it is no included in the client bundle
-  // It should not be needed because remix does Server Code Pruning.
-  const { getClientAuthToken } = await import("@cord-sdk/server");
-
-  const { CORD_SECRET, CORD_APP_ID } = process.env;
-  if (!CORD_SECRET || !CORD_APP_ID) {
-    console.error(
-      "Missing CORD_SECRET or CORD_ORD_ID env variable. Get it on console.cord.com and add it to .env"
-    );
-    return json({ clientAuthToken: null, users: [], userIndex: -1 });
-  }
-  const url = new URL(request.url);
-  let userIndex = parseInt(url.searchParams.get("userIndex") ?? "", 10);
-  if (isNaN(userIndex)) {
-    userIndex = Math.round(Math.random() * 3);
-  }
-
-  const users = [
-    {
-      // The user ID can be any identifier that makes sense to your application.
-      // As long as it's unique per-user, Cord can use it to represent your user.
-      user_id: "severusatreides",
-
-      // Same as above. An organization ID can be any unique string. Organizations
-      // are groups of users.
-      organization_id: "starpotterdunewars",
-      user_details: {
-        email: "sevvy@arrakis.spice",
-        name: "Severus Atreides",
-      },
-    },
-    {
-      user_id: "minervahalleck",
-      organization_id: "starpotterdunewars",
-      user_details: {
-        email: "catlady@tattoine.gov",
-        name: "Minerva Halleck",
-      },
-    },
-    {
-      user_id: "hermioneorgana",
-      organization_id: "starpotterdunewars",
-      user_details: {
-        email: "hermi1979@starfleet.org.terra",
-        name: "Hermione Organa",
-      },
-    },
-    {
-      user_id: "jarjarmarvolo",
-      organization_id: "starpotterdunewars",
-      user_details: {
-        email: "meesa@lowkey.sith",
-        name: "Jar Jar Marvolo",
-      },
-    },
-  ];
-  const safeUserIndex = userIndex % users.length;
-  const user = users[safeUserIndex];
-
-  const clientAuthToken = getClientAuthToken(CORD_APP_ID, CORD_SECRET, {
-    ...user,
-    // By supplying the `organization_details` object, just like the user,
-    // Cord will create the organization on-the-fly.
-    organization_details: {
-      name: "starpotterdunewars",
-    },
-  });
-  return json({
-    clientAuthToken,
-    users: users.map((user) => user.user_details.name),
-    userIndex: safeUserIndex,
-  });
-}
-
-export default function App() {
-  const { clientAuthToken, users, userIndex } = useLoaderData<typeof loader>();
+function Document({
+  children,
+  title = "Remix+Cord",
+}: PropsWithChildren<{ title?: string }>) {
   return (
     <html lang="en">
       <head>
@@ -107,36 +40,53 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        {title ? <title>{title}</title> : null}
       </head>
       <body>
-        <div >
-          {clientAuthToken ? (
-            <CordProvider clientAuthToken={clientAuthToken}>
-              <ChangeUser users={users} userIndex={userIndex} />
-              <Outlet />
-            </CordProvider>
-          ) : (
-            <div id="setup-cord">
-              <p>You need your key first!</p>
-              <ol>
-                <li>
-                  Visit <a href="https://console.cord.com">the cord console</a>{" "}
-                  to get an API key.
-                </li>
-                <li>Create a .env file.</li>
-                <li>Paste your Application ID and Secret in it.</li>
-                <pre>{`CORD_APP_ID=<Application ID>
-CORD_SECRET=<Secret>`}</pre>
-                <li>Restart your remix</li>
-              </ol>
-            </div>
-          )}
-        </div>
+        {children}
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
       </body>
     </html>
+  );
+}
+
+export default function App() {
+  const { users, userIndex } = useLoaderData<typeof loader>();
+  return (
+    <Document>
+      <div>
+        <ChangeUser users={users} userIndex={userIndex} />
+        <Outlet />
+      </div>
+    </Document>
+  );
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  if (isRouteErrorResponse(error)) {
+    return (
+      <Document title={`${error.status} ${error.statusText}`}>
+        <div className="error-container">
+          <h1>
+            {error.status} {error.statusText}
+          </h1>
+        </div>
+      </Document>
+    );
+  }
+
+  const errorMessage = error instanceof Error ? error.message : "Unknown error";
+  return (
+    <Document title="Uh-oh!">
+      <div className="error-container">
+        <h1>App Error</h1>
+        <pre>{errorMessage}</pre>
+      </div>
+    </Document>
   );
 }
 
