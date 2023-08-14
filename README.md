@@ -1,3 +1,4 @@
+![image](https://github.com/getcord/cord-remix/assets/529333/70205e83-79b3-44cf-9f30-3d34bd4ab8c1)
 # Welcome to Remix + Cord!
 
 [Cord](https://www.cord.com) adds collaboration to your product in under an hour. Our SDK helps you re-imagine your app with a rich, real-time collaboration experience - in minutes, not months.
