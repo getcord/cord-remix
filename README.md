@@ -7,13 +7,15 @@ This starter templates helps integrates Cord into a remix app. 💽
 - [Cord Docs](https://docs.cord.com)
 - [Remix Docs](https://remix.run/docs)
 
-This template follows [the cord integration guide](https://docs.cord.com/get-started/integration-guide).
+This template follows [the cord integration guide](https://docs.cord.com/get-started/integration-guide) and adds page presence and a thread.
+You can add more [components](https://docs.cord.com/components).
 
 ## Install
 From your terminal, create a remix + cord app:
 ```sh
 npx create-remix@latest --typescript --install --template getcord/cord-remix
 ```
+Then `cd` in the newly created folder.
 ## Development
 
 From your terminal:

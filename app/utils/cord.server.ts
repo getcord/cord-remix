@@ -45,6 +45,9 @@ export function getUser(request: Request) {
       // Same as above. An organization ID can be any unique string. Organizations
       // are groups of users.
       organization_id: "starpotterdunewars",
+
+      // By supplying the  `user_details` object, you can create the user in
+      // Cord's backend on-the-fly. No need to pre-sync your users.
       user_details: {
         email: "sevvy@arrakis.spice",
         name: "Severus Atreides",

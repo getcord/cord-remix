@@ -14,6 +14,7 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesUrl },
   {
     rel: "stylesheet",
+    // We need that for the cord component to be styled properly.
     href: "https://app.cord.com/sdk/v1/sdk.latest.css",
     id: "cord_css",
   },
@@ -49,7 +50,7 @@ export function ErrorBoundary() {
             <li>Paste your Application ID and Secret in it.</li>
             <pre>{`CORD_APP_ID=<Application ID>
 CORD_SECRET=<Secret>`}</pre>
-            <li>Restart your remix</li>
+            <li>Terminate and then restart your remix <pre>npm run dev</pre></li>
           </ol>
         </div>
       </div>

@@ -3,6 +3,20 @@ import { createHmac } from "crypto";
 
 const { CORD_SECRET } = process.env;
 
+/**
+ * This API route is the starting point for using our Events Webhook.
+ * Events Webhook let you write some code that run when something happens in cord.
+ * see https://docs.cord.com/reference/events-webhook
+ *
+ * The code below only verify the event signature; you can modifiy it to handle events.
+ *
+ * To enable events webhook you need to:
+ * 1. Go to the console https://console.cord.com/
+ * 2. Open your `App Settings` and go to the `Events` tab.
+ * 3. Use a tool to expose your app to the internet (like `ngrok`) 
+ * 4. Enter `<your ngrok app url>/events` in `Webhook URL` and save. You should get a confirmation.
+ * 5. Enable 1 or more event subscriptions.
+ **/
 export const action = async ({ request }: ActionArgs) => {
   if (!CORD_SECRET) {
     throw new Error(
