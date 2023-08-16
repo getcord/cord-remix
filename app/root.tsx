@@ -1,3 +1,4 @@
+import type { PropsWithChildren } from "react";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import { json, type LinksFunction, type LoaderArgs } from "@remix-run/node";
 import {
@@ -11,9 +12,7 @@ import {
   useLoaderData,
   useRouteError,
 } from "@remix-run/react";
-import stylesUrl from "~/styles/root.css";
 import { getUser } from "./utils/cord.server";
-import { PropsWithChildren } from "react";
 
 export async function loader({ request }: LoaderArgs) {
   return json(getUser(request));
@@ -21,12 +20,6 @@ export async function loader({ request }: LoaderArgs) {
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-  { rel: "stylesheet", href: stylesUrl },
-  {
-    rel: "stylesheet",
-    href: "https://app.cord.com/sdk/v1/sdk.latest.css",
-    id: "cord_css",
-  },
 ];
 
 function Document({

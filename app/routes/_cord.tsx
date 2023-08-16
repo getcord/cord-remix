@@ -1,5 +1,5 @@
 import { CordProvider } from "@cord-sdk/react";
-import type { LoaderArgs } from "@remix-run/node";
+import type { LinksFunction, LoaderArgs } from "@remix-run/node";
 import {
   Outlet,
   isRouteErrorResponse,
@@ -8,6 +8,16 @@ import {
 } from "@remix-run/react";
 import { CORD_MISSING_ENV } from "~/utils/cord";
 import { getCord } from "~/utils/cord.server";
+import stylesUrl from "~/styles/cord.css";
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+  {
+    rel: "stylesheet",
+    href: "https://app.cord.com/sdk/v1/sdk.latest.css",
+    id: "cord_css",
+  },
+];
 
 export async function loader({ request }: LoaderArgs) {
   return getCord(request);
