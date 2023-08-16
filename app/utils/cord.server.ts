@@ -33,7 +33,7 @@ export function getUser(request: Request) {
   const url = new URL(request.url);
   let userIndex = parseInt(url.searchParams.get("userIndex") ?? "", 10);
   if (isNaN(userIndex)) {
-    userIndex = Math.round(Math.random() * 3);
+    userIndex = 0;
   }
 
   const users = [
