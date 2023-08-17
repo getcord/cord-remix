@@ -51,7 +51,7 @@ export function getUser(request: Request) {
       user_details: {
         email: "sevvy@arrakis.spice",
         name: "Severus Atreides",
-        profilePictureURL: "https://i.pravatar.cc/150?img=3"
+        profilePictureURL: "https://app.cord.com/static/Tom.png"
       },
     },
     {
@@ -60,7 +60,7 @@ export function getUser(request: Request) {
       user_details: {
         email: "catlady@tattoine.gov",
         name: "Minerva Halleck",
-        profilePictureURL: "https://i.pravatar.cc/150?img=4"
+        profilePictureURL: "https://app.cord.com/static/MyHoa.png"
       },
     },
     {
@@ -69,7 +69,7 @@ export function getUser(request: Request) {
       user_details: {
         email: "hermi1979@starfleet.org.terra",
         name: "Hermione Organa",
-        profilePictureURL: "https://i.pravatar.cc/150?img=5"
+        profilePictureURL: "https://app.cord.com/static/Khadija.png"
       },
     },
     {
@@ -78,7 +78,7 @@ export function getUser(request: Request) {
       user_details: {
         email: "meesa@lowkey.sith",
         name: "Jar Jar Marvolo",
-        profilePictureURL: "https://i.pravatar.cc/150?img=6"
+        profilePictureURL: "https://app.cord.com/static/Jackson.png"
       },
     },
   ];
