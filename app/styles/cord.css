@@ -2,22 +2,22 @@
 body {
 
   /* Basic background for most elements */
-  --cord-color-base: #121314;
+  --cord-color-base: #f5f5f5;
 
   /* Background for highlighted elements, e.g. annotation */
-  --cord-color-base-strong: #696A6C;
+  --cord-color-base-strong: #e5e5e5;
 
   /* Hover states and borders */
-  --cord-color-base-x-strong: #97979F;
+  --cord-color-base-x-strong: #d1d1d1;
 
   /* Most content, e.g. message text */
-  --cord-color-content-primary: #F6F6F6;
+  --cord-color-content-primary: #3d3a33;
 
   /* Supplementary content, e.g. timestamps */
-  --cord-color-content-emphasis: #FFFFFF;
+  --cord-color-content-emphasis: #9a6aff;
 
   /* Links, button content and usernames */
-  --cord-color-brand-primary: #FFFFFF;
+  --cord-color-brand-primary: #6949ac;
 
 }
 
