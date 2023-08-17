@@ -13,6 +13,7 @@ import {
   useRouteError,
 } from "@remix-run/react";
 import { getUser } from "./utils/cord.server";
+import stylesUrl from "~/styles/cord.css";
 
 export async function loader({ request }: LoaderArgs) {
   return json(getUser(request));
@@ -20,6 +21,7 @@ export async function loader({ request }: LoaderArgs) {
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+  { rel: "stylesheet", href: stylesUrl },
 ];
 
 function Document({

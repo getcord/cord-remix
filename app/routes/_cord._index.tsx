@@ -19,7 +19,43 @@ export default function Index() {
       <PagePresence />
       <p>Let's get Cord-y!</p>
       <Thread threadId="a-first-conversation" />
-      <p>Edit <code>app/_cord._index.tsx</code> to get started.</p>
+      <CordInfo />
+    </div>
+  );
+}
+
+function CordInfo() {
+  return (
+    <div className="cord-info">
+      <p className="get-started">
+        Edit <code>app/_cord._index.tsx</code> to get started.
+      </p>
+      <p className="cord-gives">Cord gives you a</p>{" "}
+      <ul>
+        <li>
+          <a href="https://docs.cord.com/components">
+            rich UI Component Library
+          </a>
+          ,&nbsp;
+        </li>
+        <li>
+          <a href="https://docs.cord.com/js-apis-and-hooks">
+            a client-side SDK for real-time features
+          </a>
+          ,&nbsp;
+        </li>
+        <li>
+          <a href="https://docs.cord.com/rest-apis">REST APIs</a>, and{" "}
+          <a href="https://docs.cord.com/reference/events-webhook">
+            webhook events
+          </a>
+          .
+        </li>
+      </ul>
+      <div className="cord-CTA">
+        <a href="https://docs.cord.com">View Docs</a>
+        <a className="secondary" href="https://console.cord.com">Manage your app</a>
+      </div>
     </div>
   );
 }

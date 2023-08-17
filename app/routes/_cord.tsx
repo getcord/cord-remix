@@ -38,22 +38,22 @@ export function ErrorBoundary() {
 
   if (isRouteErrorResponse(error) && error.statusText === CORD_MISSING_ENV) {
     return (
-      <div className="error-container">
-        <div id="setup-cord">
-          <p>You need your key first!</p>
-          <ol>
-            <li>
-              Visit <a href="https://console.cord.com">the cord console</a> to
-              get an API key.
-            </li>
-            <li>Create a .env file.</li>
-            <li>Paste your Application ID and Secret in it.</li>
-            <pre>{`CORD_APP_ID=<Application ID>
+      <section id="setup-cord">
+        <h1>You need your sample key first!</h1>
+        <ol>
+          <li>
+            Visit <a href="https://console.cord.com">the cord console</a> to get
+            an API key.
+          </li>
+          <li>Create a .env file.</li>
+          <li>Paste your Application ID and Secret in it.</li>
+          <pre>{`CORD_APP_ID=<Application ID>
 CORD_SECRET=<Secret>`}</pre>
-            <li>Terminate and then restart your remix <pre>npm run dev</pre></li>
-          </ol>
-        </div>
-      </div>
+          <li>
+            Terminate and then restart your remix <pre>npm run dev</pre>
+          </li>
+        </ol>
+      </section>
     );
   } else {
     throw error;

@@ -1,6 +1,7 @@
 /* Tune this on https://docs.cord.com/get-started/live-css-editor  */
 body {
 
+
   /* Basic background for most elements */
   --cord-color-base: #f5f5f5;
 
@@ -21,13 +22,39 @@ body {
 
 }
 
-/* Prettify a bit */
+/* Prettify a bit 
+* You can get rid of that in your app.
+**/
+@font-face {
+  font-family: 'abc_favoritbook';
+  /* src: url('https://v5.cord.com/abcfavorit-book-webfont.woff2') format('woff2'), */
+  /*   url('https://v5.cord.com/abcfavorit-book-webfont.woff') format('woff'); */
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  color: #3d3a33;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 350;
+  line-height: 130%;
+  font-family: abc_favoritbook, sans-serif;
+}
 
 #setup-cord {
+  background: var(--cord-color-base);
+  margin: auto;
+  padding: 24px;
+  width: fit-content;
   display: flex;
   flex-direction:column;
   align-items: center;
 }
+
+#setup-cord h1 {
+  font-size: 16px;
+}
+
 #setup-cord pre {
   border: 1px dashed #97979F;
   padding: 4px 6px;
@@ -37,4 +64,107 @@ body {
   display: flex;
   gap: 4px;
   margin: 4px;
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: start;
+  margin-top: 24px;
+}
+.change-user select {
+  background-color: #9a6aff;
+  color: #fff;
+  text-decoration: none;
+  transition: .2s;
+  align-items: center;
+  border-style:none;
+  border-radius: 48px;
+  box-sizing: border-box;
+  display: flex;
+  font-style: normal;
+  height: 36px;
+  justify-content: end;
+  padding: 6px 0px 6px 10px;
+}
+
+.change-user select:hover {
+  background-color: #6949ac;
+  box-shadow: 0 0 0 8px #f6f1ff;
+}
+
+.cord-info {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+.cord-info .get-started {
+  margin-bottom: 24px;
+}
+
+.cord-info p {
+  font-size: 18px;
+}
+
+.cord-info .cord-gives {
+  display: inline;
+}
+
+.cord-info ul {
+  display: inline;
+  list-style-type: none;
+  padding-left: 0;
+}
+.cord-info ul > li {
+ display: inline;
+}
+.cord-info ul > li > a {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--cord-color-content-emphasis);
+}
+
+.cord-info .cord-CTA {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 24px;
+}
+.cord-info .cord-CTA a {
+  background-color: #9a6aff;
+  color: #fff;
+  text-decoration: none;
+  animation: Index_pulse__C0pRL 1.5s infinite;
+  transition: .2s;
+  align-items: center;
+  border-radius: 48px;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 350;
+  height: 48px;
+  letter-spacing: -.32px;
+  line-height: 26px;
+  justify-content: center;
+  margin: 0;
+  padding: 12px 24px;
+}
+
+.cord-info .cord-CTA a:hover {
+  background-color: #6949ac;
+  box-shadow: 0 0 0 8px #f6f1ff;
+}
+
+.cord-info .cord-CTA a.secondary {
+  background-color: #f6f1ff;
+  border-radius: 4px;
+  color: #9a6aff;
+  text-decoration: none;
+  transition: .1s;
+}
+
+.cord-info .cord-CTA a.secondary:hover {
+  background-color: #e4d7ff;
+  color: #6949ac;
 }
