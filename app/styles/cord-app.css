@@ -1,0 +1,90 @@
+/* Prettify a bit 
+* You can get rid of that in your app.
+**/
+body {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  font-family:  sans-serif;
+}
+
+.cord-setup {
+  margin: auto;
+  padding: 24px;
+  width: fit-content;
+  display: flex;
+  flex-direction:column;
+}
+
+.cord-setup pre {
+  background-color: #F5F5F5;
+  border: none;
+  padding: 12px;
+  width: fit-content;
+
+} 
+.cord-setup ol {
+  padding-inline-start: 0px;
+  margin-top: 0px;
+}
+
+.cord-app, .cord-setup {
+  width: 420px;
+  margin: auto;
+  margin-top: 80px;
+}
+.cord-setup h1 {
+  font-size: 16px;
+  margin-block: 0px 24px;
+}
+.cord-setup p {
+  margin-bottom: 12px;
+}
+.cord-app h1 {
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.cord-app .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.change-user {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: start;
+}
+
+.cord-info {
+  margin: 0 auto;
+  text-align: flex-start;
+}
+.cord-info .get-started {
+  margin-bottom: 12px;
+  margin-top: 40px;
+}
+
+.cord-info .cord-gives {
+  font-size: 14px;
+}
+.cord-info .cord-gives ul {
+  display: inline;
+  list-style-type: none;
+  padding-left: 0;
+}
+.cord-info .cord-gives ul > li {
+  display: inline;
+}
+:is(.cord-info, .cord-setup) a {
+  color: #000;
+  text-underline-offset: 2px;
+}
+
+.cord-info .cord-CTA {
+  margin-bottom: 24px;
+}

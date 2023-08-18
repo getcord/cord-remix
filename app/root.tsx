@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 import { cssBundleHref } from "@remix-run/css-bundle";
-import { json, type LinksFunction, type LoaderArgs } from "@remix-run/node";
+import {  type LinksFunction,  } from "@remix-run/node";
 import {
   isRouteErrorResponse,
   Links,
@@ -9,19 +9,12 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
   useRouteError,
 } from "@remix-run/react";
-import { getUser } from "./utils/cord.server";
-import stylesUrl from "~/styles/cord.css";
 
-export async function loader({ request }: LoaderArgs) {
-  return json(getUser(request));
-}
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-  { rel: "stylesheet", href: stylesUrl },
 ];
 
 function Document({
@@ -48,13 +41,9 @@ function Document({
 }
 
 export default function App() {
-  const { users, userIndex } = useLoaderData<typeof loader>();
   return (
     <Document>
-      <div>
-        <ChangeUser users={users} userIndex={userIndex} />
         <Outlet />
-      </div>
     </Document>
   );
 }
@@ -85,31 +74,3 @@ export function ErrorBoundary() {
   );
 }
 
-function ChangeUser({
-  users,
-  userIndex,
-}: {
-  users: string[];
-  userIndex: number;
-}) {
-  return (
-    <label className="change-user">
-      Change user
-      <select
-        value={userIndex}
-        onChange={(e) => {
-          const newUserIndex = e.target.value;
-          const searchParams = new URLSearchParams(location.search);
-          searchParams.set("userIndex", newUserIndex);
-          location.search = searchParams.toString();
-        }}
-      >
-        {users.map((user, idx) => (
-          <option key={idx} value={idx}>
-            {user}
-          </option>
-        ))}
-      </select>
-    </label>
-  );
-}

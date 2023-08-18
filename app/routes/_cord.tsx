@@ -8,9 +8,11 @@ import {
 } from "@remix-run/react";
 import { CORD_MISSING_ENV } from "~/utils/cord";
 import { getCord } from "~/utils/cord.server";
-import stylesUrl from "~/styles/cord.css";
+import cordStylesUrl from "~/styles/cord.css";
+import stylesUrl from "~/styles/cord-app.css";
 
 export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: cordStylesUrl },
   { rel: "stylesheet", href: stylesUrl },
   {
     rel: "stylesheet",
@@ -38,19 +40,20 @@ export function ErrorBoundary() {
 
   if (isRouteErrorResponse(error) && error.statusText === CORD_MISSING_ENV) {
     return (
-      <section id="setup-cord">
-        <h1>You need your sample key first!</h1>
+      <section className="cord-setup">
+        <p>Welcome to Cord's remix starter template</p>
+        <h1>Time to get your API key</h1>
         <ol>
           <li>
-            Visit <a href="https://console.cord.com">the cord console</a> to get
-            an API key.
+            <a href="https://console.cord.com">Create a free Cord account</a> to get
+            your API key.
           </li>
           <li>Create a .env file.</li>
-          <li>Paste your Application ID and Secret in it.</li>
+          <li>Paste your Cord Application ID and Secret in your .env file</li>
           <pre>{`CORD_APP_ID=<Application ID>
 CORD_SECRET=<Secret>`}</pre>
           <li>
-            Terminate and then restart your remix <pre>npm run dev</pre>
+            Restart your remix <pre>npm run dev</pre>
           </li>
         </ol>
       </section>
