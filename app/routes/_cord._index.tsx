@@ -33,7 +33,7 @@ export default function Index() {
          *  So we only take the pathname. */}
         <PagePresence location={{ location: location.pathname }} />
       </div>
-      <h1>Let's get Cord-y!</h1>
+      <h1>Let's get Cordy!</h1>
       {/* A thread is automatically created if not existing. You can try changing it, or adding another one!*/}
       <Thread threadId="a-first-conversation" />
       <CordInfo />
