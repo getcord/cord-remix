@@ -1,11 +1,11 @@
-import type { LoaderArgs } from "@remix-run/node";
+import type { LoaderFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { CORD_MISSING_ENV } from "./cord";
 import { getClientAuthToken } from "@cord-sdk/server";
 
 const ORG_ID = "samplecord";
 
-export async function getCord(request: LoaderArgs["request"]) {
+export async function getCord(request: LoaderFunctionArgs["request"]) {
   const { CORD_SECRET, CORD_APP_ID } = process.env;
   if (!CORD_SECRET || !CORD_APP_ID) {
     throw new Response(

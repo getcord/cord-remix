@@ -1,4 +1,4 @@
-import { json, type ActionArgs } from "@remix-run/node";
+import { json, type ActionFunctionArgs } from "@remix-run/node";
 import { createHmac } from "crypto";
 
 const { CORD_SECRET } = process.env;
@@ -17,7 +17,7 @@ const { CORD_SECRET } = process.env;
  * 4. Enter `<your ngrok app url>/events` in `Webhook URL` and save. You should get a confirmation.
  * 5. Enable 1 or more event subscriptions.
  **/
-export const action = async ({ request }: ActionArgs) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
   if (!CORD_SECRET) {
     throw new Error(
       "Missing CORD_SECRET env variable. Get it on console.cord.com and add it to .env"

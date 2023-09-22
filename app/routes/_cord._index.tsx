@@ -1,17 +1,17 @@
-import { json, type LoaderArgs, type V2_MetaFunction } from "@remix-run/node";
+import { json, type LoaderFunctionArgs, type MetaFunction } from "@remix-run/node";
 
 import { PagePresence, Thread } from "@cord-sdk/react";
 import { getUser } from "~/utils/cord.server";
 import { useLoaderData, useLocation } from "@remix-run/react";
 
-export const meta: V2_MetaFunction = () => {
+export const meta: MetaFunction = () => {
   return [
     { title: "New Remix App" },
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   return json(getUser(request));
 }
 

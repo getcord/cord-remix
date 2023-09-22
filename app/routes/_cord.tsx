@@ -1,5 +1,5 @@
 import { CordProvider } from "@cord-sdk/react";
-import type { LinksFunction, LoaderArgs } from "@remix-run/node";
+import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 import {
   Outlet,
   isRouteErrorResponse,
@@ -22,7 +22,7 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   return getCord(request);
 }
 
