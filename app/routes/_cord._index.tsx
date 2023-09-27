@@ -1,6 +1,10 @@
-import { json, type LoaderFunctionArgs, type MetaFunction } from "@remix-run/node";
+import {
+  json,
+  type LoaderFunctionArgs,
+  type MetaFunction,
+} from "@remix-run/node";
 
-import { PagePresence, Thread } from "@cord-sdk/react";
+import { LiveCursors, PagePresence, Thread } from "@cord-sdk/react";
 import { getUser } from "~/utils/cord.server";
 import { useLoaderData, useLocation } from "@remix-run/react";
 
@@ -24,6 +28,7 @@ export default function Index() {
   const location = useLocation();
   return (
     <div className="cord-app">
+      <LiveCursors location={{ location: location.pathname }} />
       <div className="row">
         <ChangeUser users={users} userIndex={userIndex} />
         {/*  By default cord uses window.location, that includes search parameters.
