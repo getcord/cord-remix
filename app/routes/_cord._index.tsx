@@ -7,6 +7,7 @@ import {
 import { LiveCursors, PagePresence, Thread } from "@cord-sdk/react";
 import { getUser } from "~/utils/cord.server";
 import { useLoaderData, useLocation } from "@remix-run/react";
+import { GROUP_ID } from "~/consts";
 
 export const meta: MetaFunction = () => {
   return [
@@ -28,7 +29,10 @@ export default function Index() {
   const location = useLocation();
   return (
     <div className="cord-app">
-      <LiveCursors location={{ location: location.pathname }} />
+      <LiveCursors
+        groupId={GROUP_ID}
+        location={{ location: location.pathname }}
+      />
       <div className="row">
         <ChangeUser users={users} userIndex={userIndex} />
         {/*  By default cord uses window.location, that includes search parameters.
@@ -36,11 +40,14 @@ export default function Index() {
          *  This would cause different users to never be on the same page:
          *  we do not want that, we are all about collaboration.
          *  So we only take the pathname. */}
-        <PagePresence location={{ location: location.pathname }} />
+        <PagePresence
+          groupId={GROUP_ID}
+          location={{ location: location.pathname }}
+        />
       </div>
       <h1>Let's get Cordy!</h1>
       {/* A thread is automatically created if not existing. You can try changing it, or adding another one!*/}
-      <Thread threadId="a-first-conversation" />
+      <Thread groupId={GROUP_ID} threadId="a-sample-conversation" />
       <CordInfo />
     </div>
   );

@@ -8,8 +8,8 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@cord-sdk/react": "^1.15.1",
-    "@cord-sdk/server": "^1.15.1",
+    "@cord-sdk/react": "^1.29.0",
+    "@cord-sdk/server": "^1.29.0",
     "@remix-run/css-bundle": "2.0.1",
     "@remix-run/node": "2.0.1",
     "@remix-run/react": "2.0.1",
